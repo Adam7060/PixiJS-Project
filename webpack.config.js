@@ -5,13 +5,13 @@ const isDev = process.env.NODE_ENV !== 'production';
 
 const config = {
     mode: isDev ? 'development' : 'production',
-    entry: './src/scripts/app.ts',
+    entry: './src/entry.ts',
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
     },
     resolve: {
-        extensions: ['.tsx', '.ts', '.js']
+        extensions: ['.tsx', '.ts', '.js'],
     },
     module: {
         rules: [
@@ -20,25 +20,21 @@ const config = {
                 loader: 'ts-loader',
                 exclude: /node_modules/,
             },
-        ]
+        ],
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new CopyPlugin([
-            { from: 'src/index.html' },
-            { from: 'src/css/style.css', to: 'css/' },
-            { from: 'src/images/logo.png', to: 'images/' },
-        ]),
+        new CopyPlugin([{ from: 'index.html' }, { from: 'style.css' }, { from: './src/assets', to: path.resolve(__dirname, 'dist/assets') }]),
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
         port: 8080,
-        hot: true
+        hot: true,
     },
     optimization: {
-        minimize: !isDev
-      }
+        minimize: !isDev,
+    },
 };
 
 module.exports = config;
