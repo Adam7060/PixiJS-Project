@@ -1,28 +1,31 @@
 import { Application } from 'pixi.js';
 import Menu from './menu';
 
-let config = {
+interface Config {
+    backgroundColor: number;
+    width: number;
+    height: number;
+    resolution: number;
+}
+
+let config: Config = {
     backgroundColor: 0xffff00,
     width: window.innerWidth,
     height: window.innerHeight,
+    resolution: 1,
 };
 
-const game = new Application(config);
+const game: Application = new Application(config);
 document.body.appendChild(game.view);
 
-const menu = new Menu(game);
+let menu: Menu = new Menu(game);
 
-window.addEventListener(
-    'resize',
-    () => {
-        let clientWidth = window.innerWidth;
-        let clientHeight = window.innerHeight;
+window.addEventListener('resize', resize, false);
 
-        game.renderer.resize(clientWidth, clientWidth);
-        game.stage.scale.x = window.innerWidth;
-        game.stage.scale.y = window.innerHeight;
+function resize() {
+    let clientWidth: number = window.innerWidth;
+    let clientHeight: number = window.innerHeight;
 
-        menu.resizeContent(clientWidth, clientHeight);
-    },
-    false
-);
+    game.renderer.resize(clientWidth, clientHeight);
+    menu.resizeContent(clientWidth, clientHeight);
+}
