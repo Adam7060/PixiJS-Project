@@ -28,6 +28,7 @@ class Menu {
 
         loader.add('button', './assets/button.png');
         loader.add('card', './assets/card.png');
+        loader.add('rifle', './assets/rifle.png');
 
         loader.onComplete.add(() => {
             this.createContent();
