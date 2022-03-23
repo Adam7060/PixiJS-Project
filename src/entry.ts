@@ -17,6 +17,7 @@ let config: Config = {
 
 const game: Application = new Application(config);
 document.body.appendChild(game.view);
+game.renderer.view.style.position = 'absolute';
 
 let menu: Menu = new Menu(game);
 

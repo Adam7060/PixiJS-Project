@@ -1,6 +1,7 @@
 import { Application, Loader, Sprite, Text } from 'pixi.js';
 import { getScale, addSprite, addText } from './utils';
 import Deck from './scripts/deck';
+import Particles from './scripts/particles';
 class Menu {
     private game: Application;
 
@@ -63,7 +64,7 @@ class Menu {
     //#####################################################################################################################################
     onParticlesBtn() {
         this.game.stage.removeChildren();
-        this.activeScene = new Deck(this.game);
+        this.activeScene = new Particles(this.game);
     }
     //#####################################################################################################################################
     onToolBtn() {
