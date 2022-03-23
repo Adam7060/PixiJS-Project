@@ -2,6 +2,7 @@ import { Application, Loader, Sprite, Text } from 'pixi.js';
 import { getScale, addSprite, addText } from './utils';
 import Deck from './scripts/deck';
 import Particles from './scripts/particles';
+import Tool from './scripts/tool';
 class Menu {
     private game: Application;
 
@@ -29,6 +30,9 @@ class Menu {
         loader.add('button', './assets/button.png');
         loader.add('card', './assets/card.png');
         loader.add('rifle', './assets/rifle.png');
+        loader.add('money-1', './assets/money-1.jpg');
+        loader.add('money-2', './assets/money-2.jpg');
+        loader.add('money-3', './assets/money-3.jpg');
 
         loader.onComplete.add(() => {
             this.createContent();
@@ -70,7 +74,7 @@ class Menu {
     //#####################################################################################################################################
     onToolBtn() {
         this.game.stage.removeChildren();
-        this.activeScene = new Deck(this.game);
+        this.activeScene = new Tool(this.game);
         console.log('Tool button pressed');
     }
     //#####################################################################################################################################
